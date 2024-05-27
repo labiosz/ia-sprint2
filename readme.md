@@ -47,6 +47,8 @@ Implementação das principais funcionalidades da propostas, incluindo previsão
     #### Docker: 
     Utilizado para criar containers que garantem a consistência do ambiente de desenvolvimento e produção.
 
+    ---
+
 - Recursos/Ferramentas dentro da aplicação:
     ### Pandas e NumPy:
 
