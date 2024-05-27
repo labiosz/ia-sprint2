@@ -56,6 +56,8 @@ Implementação das principais funcionalidades da propostas, incluindo previsão
     Pandas e NumPy são utilizados para carregar, limpar, normalizar e manipular os dados de movimentação de estoque.
     Exemplo: Carregar os dados históricos de movimentação de estoque, preencher valores ausentes e normalizar os dados para serem utilizados pelo modelo.
 
+    ---
+
     ### TensorFlow/Keras:
 
     #### Modelagem de Previsão: 
@@ -63,11 +65,15 @@ Implementação das principais funcionalidades da propostas, incluindo previsão
     Utilizado para construir e treinar um modelo LSTM que prevê a demanda futura de medicamentos com base nos dados históricos.
     Exemplo: Construir um modelo LSTM, treinar com os dados históricos e fazer previsões de desabastecimento.
         
+    ---
+
     ### OpenAI API (ChatGPT):
 
     #### Insights e Recomendações: 
     Utilizado para responder perguntas em linguagem natural sobre o estado do estoque e fornecer recomendações baseadas nas previsões.
     Exemplo: Receber uma pergunta sobre a disponibilidade de um medicamento específico e retornar uma resposta gerada pelo ChatGPT com base nas previsões e dados atuais.
+
+    ---
 
     ### Flask:
 
@@ -83,6 +89,9 @@ Implementação das principais funcionalidades da propostas, incluindo previsão
     Utilizados para prever a demanda futura de medicamentos com base em padrões históricos de movimentação de estoque. LSTM é uma variante das Redes Neurais Recorrentes (RNNs) que lida bem com dependências de longo prazo, sendo ideal para séries temporais.
     #### Pipeline de Treinamento: 
     Inclui coleta e pré-processamento de dados, construção do modelo, treinamento e validação, e ajuste de hiperparâmetros para melhorar a precisão das previsões.
+    
+    ---
+
     ### Inteligência Artificial:
 
     #### ChatGPT: 
