@@ -1,12 +1,13 @@
+
 # Objetivo Principal
 
 ## Apresentação da Versão Beta:
-Implementação das principais funcionalidades da propostas, incluindo previsão de desabastecimento de medicamentos e integração com uma API de IA (ChatGPT) para fornecer insights e recomendações.
+Implementação das principais funcionalidades da proposta, incluindo previsão de desabastecimento de medicamentos e integração com uma API de IA (ChatGPT) para fornecer insights e recomendações.
 
 ## Objetivos Específicos
 - Etapa Atual VS Proposta Inicial:
 
-    Estmaos inicioando o desenvolvimento das IAs.
+    Estamos iniciando o desenvolvimento das IAs.
 
 - Frameworks/Bibliotecas Python, APIs e Ferramentas Utilizadas:
 
