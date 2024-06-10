@@ -1,50 +1,55 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import os
+import seaborn as sns
+import matplotlib.pyplot as plt
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 
-# Supondo que você tenha um DataFrame `data` com as colunas 'date' e 'quantity'
-data = pd.read_csv('stock_data.csv')
+#Diretório dos dados (teste):
+data_dir = ('/kaggle/input')
 
-# Pré-processamento de dados
+#Carrega todos os .csv encotrados no diretório:
+data = pd.DataFrame()
+for dirname, _, filenames in os.walk(data_dir):
+    for filename in filenames:
+        if filename.endswith('.csv'):
+            file_path = os.path.join(dirname, filename)
+            df = pd.read_csv(file_path)
+            data = pd.concat([data, df], ignore_index=True)
+
+#Caso 'data' contenha as colunas 'date' e 'quantity', temos:
 data['date'] = pd.to_datetime(data['date'])
 data.set_index('date', inplace=True)
-data = data.resample('D').sum().fillna(0)  # Resample para dias e preenche valores ausentes
+data = data.resample('D').sum().fillna(0)
 
-# Normalização dos dados
-from sklearn.preprocessing import MinMaxScaler
-scaler = MinMaxScaler()
-data_scaled = scaler.fit_transform(data)
-
-# Preparação dos dados para o modelo LSTM
-def create_dataset(data, time_step=1):
+#Preparação dos dados para o modelo LSTM:
+def dataset_creator(data, time_step=1):
     X, Y = [], []
     for i in range(len(data) - time_step - 1):
-        a = data[i:(i + time_step), 0]
+        a = data[i:(i+time_step), 0]
         X.append(a)
-        Y.append(data[i + time_step, 0])
+        Y.append(data[i+time_step])
     return np.array(X), np.array(Y)
 
 time_step = 10
-X, Y = create_dataset(data_scaled, time_step)
+X, Y = criar_dataset(data_scaled, time_step)
 X = X.reshape(X.shape[0], X.shape[1], 1)
 
-# Construção do modelo LSTM
-model = Sequential()
-model.add(LSTM(50, return_sequences=True, input_shape=(time_step, 1)))
-model.add(LSTM(50, return_sequences=False))
-model.add(Dense(1))
-model.compile(optimizer='adam', loss='mean_squared_error')
+#Construção do modelo LSTM
+modelo = Sequential([
+    LSTM(50), return_sequences=True, input_shape=(time_step, 1), LSTM(50), Dense(1)])
+modelo.compile(optimizer='adam', loss='erro_quadrático_medio')
+modelo.fit(X,Y, epochs=100, batch_size=32, validation_split=0.2)
 
-# Treinamento do modelo
-model.fit(X, Y, epochs=100, batch_size=32, validation_split=0.2)
-
-# Previsão
-train_predict = model.predict(X)
+#Previsão e avaliação do modelo:
+train_predict = modelo.predict(X)
 train_predict = scaler.inverse_transform(train_predict)
+print('Erro quadrático médio: ', math_sqrt(erro_quadratico_medio(Y, train_predict)))
 
-# Avaliação do modelo
-from sklearn.metrics import mean_squared_error
-import math
-print("MSE:", math.sqrt(mean_squared_error(Y, train_predict)))
+#Salvando o modelo e o scaler:
+modelo.save('modelo_lstm.h5')
+joblib.dump(scaler,'scaler.pkl')
+
+
