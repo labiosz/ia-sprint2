@@ -98,4 +98,3 @@ Implementação das principais funcionalidades da proposta, incluindo previsão 
     #### ChatGPT: 
     Utilizado para fornecer respostas e recomendações em linguagem natural. A API do ChatGPT é integrada ao sistema para facilitar a consulta e fornecer insights contextuais, ajudando na tomada de decisão.
 
-## Apresentação da Versão Beta
